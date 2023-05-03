@@ -1,0 +1,78 @@
+Complete step-by-step guide to make the project
+***********************************************
+
+#1. Installing Dependencies 
+    ~1.a. npm init -y 
+        // "-y" indicates that we dont have to fill all the details, it will be done
+        automatically  
+        // package.json will be created
+    ~1.b. install express
+        // npm i express
+    ~1.c. install mongoose
+        // npm i mongoose
+    ~1.d. install handlebars
+        // npm i handlebars
+    ~1.e. install nodemon
+        // npm i nodemon
+
+#2. Create app.js file  
+
+#3. Configure express in app.js file
+    ~3.a. Importing express
+        // const express = require("express");
+    ~3.b. Creating server
+        // const app = express();
+    ~3.c. Creating port which can be used on any device
+        // const port = process.env.PORT || 3000;
+    ~3.d. Listening app
+        //  app.listen(port , ()=>{
+            console.log(`Express app is running on http://localhost:${port}`);
+            })
+#4. Connecting to the database
+    ~4.a. importing mongo / mongoose
+        // const mongoose = require("mongoose");
+    ~4.b. connecting it 
+        // mongoose.connect("mongoose://localhost:27017/");
+           by default url ->^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
+
+#5. Using Static html & css files  
+    ~5.a. Steps
+        -> Create folder named Public
+        // it shouldn't be named anything else
+        -> Create an index.html file in it
+        -> do the html and css part as it is done
+        -> in your app.js file you need to do
+            1. import path module
+                // const path = require(path);
+            2. app.use(express.static(path.join(__dirname , "/public/")))
+                // the above code is used to use file
+                // path.join : joins the provided params and helps in importing the file easily
+                // __dirname : returns the path of the current directory
+            ***other way to connect html file*****
+            2. app.get('/' , (req,res)=>{
+                res.sendFile(path.join(__dirname , "/public/index.html"))
+            }) 
+
+#6. Using template Engine - Handle Bars 
+    **points to be noted before using hbs   
+        -> create folder named - views
+        // only and only views
+        -> create file index.hbs
+        
+    ~6.a. Middleware to be used:
+            // app.set("view engine" , "hbs");
+
+    ~6.b. Rendering the file : 
+           // app.get('/' ,(req , res)=>{
+           // res.render("index");
+           // })
+
+    ~6.c. To use a same html/css file in whole project like, a navbar is to be used several times 
+        in the project we can make a single html file and use it everywhere and this is called 
+        partials, and these are needed to be made in folder named partials .
+
+        steps:
+            -> create a hbs file in partial folder
+            -> the hbs partial file can be imported as:
+                {{>FILE_NAME}}
+                  ^ this symbol is also to be included
