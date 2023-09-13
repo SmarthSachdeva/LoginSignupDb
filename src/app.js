@@ -1,11 +1,13 @@
 const express = require("express");
 require("./db/conn")
-const Register = require("./models/registers")
+
 const app = express();
+const port = process.env.PORT || 3000;
+
+const Register = require("./models/registers")
 const path = require("path");
 const hbs = require("hbs")
 
-const port = process.env.PORT || 3000;
 
 const static_path = path.join(__dirname , "../public")
 const template_path = path.join(__dirname , "../templates/views")
